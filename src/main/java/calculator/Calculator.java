@@ -7,15 +7,27 @@ public class Calculator {
     public static int add(String numbers) {
 
         int result = 0;
-        String delimiter = "";
+        String delimiter;
         ArrayList<Integer> negativeNumbers = new ArrayList<>();
 
-        if (numbers.startsWith("//")) {
+        if (numbers.startsWith("//[")) {
+
+            String[] splitDelimAndNumbers = numbers.split("\n", 2);
+            String newDelim = splitDelimAndNumbers[0]
+                    .replaceFirst("//", "")
+                    .replaceAll("\\[", "")
+                    .replaceAll("]", "|");
+
+            delimiter = newDelim.substring(0, newDelim.length() -1);
+            numbers = splitDelimAndNumbers[1];
+
+        } else if (numbers.startsWith("//")) {
+
             String[] newDelim = numbers.split("\n", 2);
             delimiter = newDelim[0].replaceFirst("//", "");
             numbers = newDelim[1];
-        }
-        else {
+
+        } else {
             delimiter = ",|\n";
         }
 
@@ -42,4 +54,5 @@ public class Calculator {
 
         return result;
     }
+
 }

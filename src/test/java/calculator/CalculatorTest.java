@@ -26,8 +26,9 @@ class CalculatorTest {
                 Arguments.of("15,5\n10\n20", 50),
                 Arguments.of("//;\n10;30", 40),
                 Arguments.of("//hello\n10hello30hello40", 80),
-                Arguments.of("-10,10,-5,5,-199,199", 0),
-                Arguments.of("1001,2,1000", 1002)
+                Arguments.of("1001,2,1000", 1002),
+                Arguments.of("//[;][,]\n4;1,5", 10),
+                Arguments.of("//[hello][yo]\n10hello100yo20hello20yo50", 200)
         );
     }
 
