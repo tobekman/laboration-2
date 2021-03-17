@@ -8,8 +8,8 @@ class CalculatorTest {
 
     @Test
     void getSumFromNumbersInString() {
-        String input = "10,5";
-        int expectedSum = 15;
+        String input = "10,5,5,26";
+        int expectedSum = 46;
 
         int actualSum = Calculator.add(input);
 

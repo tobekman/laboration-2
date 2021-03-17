@@ -7,10 +7,6 @@ public class Calculator {
         int result = 0;
         String[] numbersArray = numbers.split(",");
 
-        if(numbersArray.length < 1 || numbersArray.length > 3) {
-            return 0;
-        }
-
         for (String s : numbersArray) {
             result = result + Integer.parseInt(s);
         }
