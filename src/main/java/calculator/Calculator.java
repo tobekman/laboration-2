@@ -25,8 +25,11 @@ public class Calculator {
             if(Integer.parseInt(s) < 0) {
                 negativeNumbers.add(Integer.parseInt(s));
             }
-            
-            result = result + Integer.parseInt(s);
+
+            if(Integer.parseInt(s) < 1001) {
+                result = result + Integer.parseInt(s);
+            }
+
         }
 
         if(negativeNumbers.size() > 0) {
