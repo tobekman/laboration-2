@@ -13,19 +13,18 @@ public class Calculator {
         if (numbers.startsWith("//[")) {
 
             String[] splitDelimAndNumbers = numbers.split("\n", 2);
-            String newDelim = splitDelimAndNumbers[0]
+            delimiter = splitDelimAndNumbers[0]
                     .replaceFirst("//", "")
                     .replaceAll("\\[", "")
                     .replaceAll("]", "|");
-
-            delimiter = newDelim.substring(0, newDelim.length() -1);
+            delimiter = delimiter.substring(0, delimiter.length() - 1);
             numbers = splitDelimAndNumbers[1];
 
         } else if (numbers.startsWith("//")) {
 
-            String[] newDelim = numbers.split("\n", 2);
-            delimiter = newDelim[0].replaceFirst("//", "");
-            numbers = newDelim[1];
+            String[] splitDelimAndNumbers = numbers.split("\n", 2);
+            delimiter = splitDelimAndNumbers[0].replaceFirst("//", "");
+            numbers = splitDelimAndNumbers[1];
 
         } else {
             delimiter = ",|\n";
@@ -34,19 +33,19 @@ public class Calculator {
         String[] numbersArray = numbers.split(delimiter);
 
         for (String s : numbersArray) {
-            if(Integer.parseInt(s) < 0) {
+            if (Integer.parseInt(s) < 0) {
                 negativeNumbers.add(Integer.parseInt(s));
             }
 
-            if(Integer.parseInt(s) < 1001) {
+            if (Integer.parseInt(s) < 1001) {
                 result = result + Integer.parseInt(s);
             }
 
         }
 
-        if(negativeNumbers.size() > 0) {
+        if (negativeNumbers.size() > 0) {
             StringBuilder numbersString = new StringBuilder();
-            for (int num: negativeNumbers) {
+            for (int num : negativeNumbers) {
                 numbersString.append(" ").append(num);
             }
             throw new IllegalArgumentException("negatives are not allowed" + numbersString);

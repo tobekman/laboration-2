@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class CalculatorTest {
 
@@ -28,8 +30,14 @@ class CalculatorTest {
                 Arguments.of("//hello\n10hello30hello40", 80),
                 Arguments.of("1001,2,1000", 1002),
                 Arguments.of("//[;][,]\n4;1,5", 10),
-                Arguments.of("//[hello][yo]\n10hello100yo20hello20yo50", 200)
+                Arguments.of("//[hello][yo]\n10hello100yo20hello20yo50", 200),
+                Arguments.of("//[hello][yo][-]\n10hello100yo20hello20yo50-100", 300)
         );
+    }
+
+    @Test
+    void addNegativeNumberThrowsException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> Calculator.add("-10,10"));
     }
 
 }
