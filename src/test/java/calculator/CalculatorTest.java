@@ -31,7 +31,8 @@ class CalculatorTest {
                 Arguments.of("1001,2,1000", 1002),
                 Arguments.of("//[;][,]\n4;1,5", 10),
                 Arguments.of("//[hello][yo]\n10hello100yo20hello20yo50", 200),
-                Arguments.of("//[hello][yo][-]\n10hello100yo20hello20yo50-100", 300)
+                Arguments.of("//[hello][yo][<]\n10hello100yo20hello20yo50<100", 300),
+                Arguments.of("sdgson4afgd34agoin456aodfi12!%!%#6", 512)
         );
     }
 

@@ -1,46 +1,30 @@
 package calculator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Calculator {
 
     public static int add(String numbers) {
 
-        int result = 0;
-        String delimiter;
+        String[] numbersToAdd = numbers.replaceAll("[^0-9-]", " ")
+                .trim()
+                .split(" ");
+
+        int result = Arrays.stream(numbersToAdd)
+                .filter(num -> !num.isBlank())
+                .map(Integer::parseInt)
+                .filter(num -> num < 1001)
+                .reduce(0, Integer::sum);
+
         ArrayList<Integer> negativeNumbers = new ArrayList<>();
 
-        if (numbers.startsWith("//[")) {
-
-            String[] splitDelimAndNumbers = numbers.split("\n", 2);
-            delimiter = splitDelimAndNumbers[0]
-                    .replaceFirst("//", "")
-                    .replaceAll("\\[", "")
-                    .replaceAll("]", "|");
-            delimiter = delimiter.substring(0, delimiter.length() - 1);
-            numbers = splitDelimAndNumbers[1];
-
-        } else if (numbers.startsWith("//")) {
-
-            String[] splitDelimAndNumbers = numbers.split("\n", 2);
-            delimiter = splitDelimAndNumbers[0].replaceFirst("//", "");
-            numbers = splitDelimAndNumbers[1];
-
-        } else {
-            delimiter = ",|\n";
-        }
-
-        String[] numbersArray = numbers.split(delimiter);
-
-        for (String s : numbersArray) {
-            if (Integer.parseInt(s) < 0) {
-                negativeNumbers.add(Integer.parseInt(s));
+        for (String s : numbersToAdd) {
+            if (!s.isBlank()) {
+                if (Integer.parseInt(s) < 0) {
+                    negativeNumbers.add(Integer.parseInt(s));
+                }
             }
-
-            if (Integer.parseInt(s) < 1001) {
-                result = result + Integer.parseInt(s);
-            }
-
         }
 
         if (negativeNumbers.size() > 0) {
