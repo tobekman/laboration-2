@@ -17,19 +17,19 @@ public class Calculator {
                 .filter(num -> num < 1001)
                 .reduce(0, Integer::sum);
 
-        ArrayList<Integer> negativeNumbers = new ArrayList<>();
+        ArrayList<String> negativeNumbers = new ArrayList<>();
 
         for (String s : numbersToAdd) {
             if (!s.isBlank()) {
                 if (Integer.parseInt(s) < 0) {
-                    negativeNumbers.add(Integer.parseInt(s));
+                    negativeNumbers.add(s);
                 }
             }
         }
 
         if (negativeNumbers.size() > 0) {
             StringBuilder numbersString = new StringBuilder();
-            for (int num : negativeNumbers) {
+            for (String num : negativeNumbers) {
                 numbersString.append(" ").append(num);
             }
             throw new IllegalArgumentException("negatives are not allowed" + numbersString);
